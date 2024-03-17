@@ -47,7 +47,7 @@ const MovieDetails = () => {
             <h1 className="text-3xl title-font mb-2">{movieDetail.Title}</h1>
             <p><strong className='me-2'>Released:</strong>{movieDetail.Released}</p>
             <p className='flex flex-wrap'><strong className='me-2'>Genre:</strong> {movieDetail.Genre}</p>
-            <p><strong className='me-2'>Rating:</strong>{movieDetail.Ratings[0].Value}</p>
+            <p><strong className='me-2'>Rating:</strong>{`${movieDetail.imdbRating} / 10`} </p>
             <p><strong className='me-2'>Country:</strong>{movieDetail.Country}</p>
             <button
               className="middle none center mt-4 mr-4 rounded-sm bg-green-500 py-3 px-6 font-sans text-sm font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" data-ripple-light="true" onClick={() => { navigate('/') }}>Go Back</button>
