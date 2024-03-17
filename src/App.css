@@ -1,0 +1,15 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #80808024;
+}
+
+.errorMsg {
+    font-size: 14px;
+    font-weight: 600;
+    color: #dd1f1f;
+}
