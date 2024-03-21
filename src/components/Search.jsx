@@ -2,11 +2,12 @@ import React, { useContext } from 'react'
 import { AppContext } from '../Context/context'
 
 const Search = () => {
-  const { searchQuery, setSearchQuery, errorAPI } = useContext(AppContext);
+  const { searchQuery, setSearchQuery, errorAPI, setPage } = useContext(AppContext);
 
   const handleSearch = (e) => {
     e.preventDefault();
     setSearchQuery(e.target.value);
+    setPage(1);
   }
 
   return (

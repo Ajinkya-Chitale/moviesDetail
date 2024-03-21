@@ -13,3 +13,23 @@ body {
     font-weight: 600;
     color: #dd1f1f;
 }
+
+.paginationParent {
+    .MuiPagination-ul {
+        padding: 10px 0;
+
+        button {
+            color: #fff;
+
+            &.Mui-selected {
+                background-color: #fff;
+                color: #333;
+                font-weight: 600;
+            }
+        }
+
+        .MuiPaginationItem-ellipsis {
+            color: #fff;
+        }
+    } 
+}

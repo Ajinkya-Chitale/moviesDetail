@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from 'react'
 import { API_URL, AppContext } from '../Context/context';
 import { NavLink } from 'react-router-dom';
+import PaginationController from './PaginationController';
 
 const Movies = () => {
-  const { movieList, loading, setLoading, setMovieList, searchQuery, setErrorAPI } = useContext(AppContext);
+  const { movieList, loading, setLoading, setMovieList, searchQuery, setErrorAPI, setTotalResults, page } = useContext(AppContext);
 
   // Function to get list of movies
   const getMoviesList = async (url) => {
@@ -16,6 +17,7 @@ const Movies = () => {
       if (data.Response === "True") {
         setLoading(false);
         setMovieList(data.Search);
+        setTotalResults(Math.ceil(parseInt(data.totalResults) / 10));
         setErrorAPI("");
       }
       else {
@@ -30,11 +32,11 @@ const Movies = () => {
   // To fetch data when page first time gets loaded and using debouncing technique
   useEffect(() => {
     let timerOut = setTimeout(() => {
-      getMoviesList(`${API_URL}&s="${searchQuery}"`);
+      getMoviesList(`${API_URL}&s="${searchQuery}"&page=${page}`);
     }, 500);
 
     return () => clearTimeout(timerOut);
-  }, [searchQuery])
+  }, [searchQuery, page])
 
   if (loading) {
     return (
@@ -56,7 +58,8 @@ const Movies = () => {
                   const movieTitle = Title.substring(0, 15);
 
                   return (
-                    <NavLink key={imdbID} to={`movie_details/${imdbID}`} className="transition-all duration-200 bg-white hover:bg-blue-500  hover:shadow-xl m-2 p-4 relative z-40 border-2 group">
+                    <NavLink key={imdbID} to={`movie_details/${imdbID}`
+                    } className="transition-all duration-200 bg-white hover:bg-blue-500  hover:shadow-xl m-2 p-4 relative z-40 border-2 group" >
                       <div div className="py-1 px-5 relative">
                         <h3 className="mb-3 text-center text-lg font-semibold text-black group-hover:text-white group-hover:-translate-y-2">{(movieTitle.length >= 15) ? `${movieTitle}...` : movieTitle}</h3>
                         <img className='group-hover:scale-110' src={Poster} alt={Title} />
@@ -69,7 +72,10 @@ const Movies = () => {
           </div>
         </div>
       </div >
-    </section>
+      {
+        (movieList.length > 0) ? <PaginationController /> : ""
+      }
+    </section >
   )
 }
 
