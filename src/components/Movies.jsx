@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import PaginationController from './PaginationController';
 
 const Movies = () => {
-  const { movieList, loading, setLoading, setMovieList, searchQuery, setErrorAPI, setTotalResults, page } = useContext(AppContext);
+  const { movieList, loading, setLoading, setMovieList, searchQuery, setErrorAPI, setTotalResults, page, type } = useContext(AppContext);
 
   // Function to get list of movies
   const getMoviesList = async (url) => {
@@ -32,11 +32,11 @@ const Movies = () => {
   // To fetch data when page first time gets loaded and using debouncing technique
   useEffect(() => {
     let timerOut = setTimeout(() => {
-      getMoviesList(`${API_URL}&s="${searchQuery}"&page=${page}`);
+      getMoviesList(`${API_URL}&s="${searchQuery}"&page=${page}&type=${type}`);
     }, 500);
 
     return () => clearTimeout(timerOut);
-  }, [searchQuery, page])
+  }, [searchQuery, page, type])
 
   if (loading) {
     return (

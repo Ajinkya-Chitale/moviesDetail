@@ -19,8 +19,9 @@ const AppProvider = ({ children }) => {
     const [movieDetail, setMovieDetail] = useState("");
     const [totalResults, setTotalResults] = useState();
     const [page, setPage] = useState(1);
+    const [type, setType] = useState('movie');
 
-    return <AppContext.Provider value={{ loading, setLoading, movieList, setMovieList, errorAPI, setErrorAPI, searchQuery, setSearchQuery, movieDetail, setMovieDetail, totalResults, setTotalResults, page, setPage }}>{children}</AppContext.Provider>
+    return <AppContext.Provider value={{ loading, setLoading, movieList, setMovieList, errorAPI, setErrorAPI, searchQuery, setSearchQuery, movieDetail, setMovieDetail, totalResults, setTotalResults, page, setPage, type, setType }}>{children}</AppContext.Provider>
 }
 
 export { AppContext, AppProvider, API_URL, imgPath }
