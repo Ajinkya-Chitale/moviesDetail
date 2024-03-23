@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { API_URL, AppContext } from '../Context/context';
+import { API_URL, AppContext, imgPath } from '../Context/context';
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -41,8 +41,8 @@ const MovieDetails = () => {
   return (
     < section className="text-gray-700 body-font overflow-hidden" >
       <div className="container px-5 py-24 mx-auto">
-        <div className="lg:w-2/5 mx-auto flex flex-wrap justify-center">
-          <img alt={movieDetail.Title} className="lg:w-2/5 w-full object-cover object-center rounded border border-gray-200" src={movieDetail.Poster} />
+        <div className="lg:w-2/5 mx-auto flex flex-wrap justify-center bg-white p-9 shadow">
+          <img alt={movieDetail.Title} className="lg:w-2/5 w-full object-cover object-center rounded border border-gray-200" src={(movieDetail.Poster === "N/A") ? imgPath : movieDetail.Poster} />
           <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
             <h1 className="text-3xl title-font mb-2">{movieDetail.Title}</h1>
             <p><strong className='me-2'>Released:</strong>{movieDetail.Released}</p>
