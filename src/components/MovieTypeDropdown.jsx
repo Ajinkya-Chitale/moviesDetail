@@ -12,12 +12,14 @@ const MovieTypeDropdown = () => {
 
         const allDropdownList = dropdownMenu.querySelectorAll('a');
 
-        for (const item of allDropdownList) {
+        allDropdownList.forEach(item => {
+            (type === (item.innerText).toLocaleLowerCase()) ? item.classList.add('active') : item.classList.remove('active');
+
             item.addEventListener('click', () => {
                 setType(item.innerText);
                 dropdownMenu.classList.add('hidden');
             })
-        }
+        });
     }
 
     const handleToggle = () => {
