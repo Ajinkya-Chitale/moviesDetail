@@ -60,7 +60,7 @@ const Movies = () => {
                   return (
                     <NavLink key={imdbID} to={`movie_details/${imdbID}`
                     } className="transition-all duration-200 bg-white hover:bg-blue-500  hover:shadow-xl m-2 p-4 relative z-40 border-2 group" >
-                      <div div className="py-1 px-5 relative">
+                      <div className="py-1 px-5 relative">
                         <h3 className="mb-3 text-center text-lg font-semibold text-black group-hover:text-white group-hover:-translate-y-2">{(movieTitle.length >= 15) ? `${movieTitle}...` : movieTitle}</h3>
                         <img className='group-hover:scale-110' src={(Poster === "N/A") ? imgPath : Poster} alt={Title} />
                       </div>
